@@ -7,7 +7,9 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template allows you to create 2 Virtual Machines with multiple sites under a Load balancer and configures a load balancing rule on Port 80-81. This template also deploys a Storage Account, Virtual Network, Public IP address, Availability Set and Network Interfaces.
+This template allows you to create 2 Virtual Machines with multiple sites under a Load balancer and configures a load balancing rule on Port 80-81. 
+<br />
+This template also deploys a Storage Account, Virtual Network, Public IP address, Availability Set and Network Interfaces.
 In this template, we use the resource loops capability to create the network interfaces and virtual machines
 <br />
 Based roughly on this quickstart template https://github.com/Azure/azure-quickstart-templates/edit/master/201-2-vms-loadbalancer-lbrules/ 
