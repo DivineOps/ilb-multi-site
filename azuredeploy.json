@@ -126,7 +126,7 @@
     },
 	"dscUrl": {
       "type": "string",
-      "defaultValue": "iLbAvSet",
+      "defaultValue": "https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json%2FwebServerMultiSiteDSC.zip",
       "metadata": {
         "description": "URL to the DSC module ZIP"
       }
