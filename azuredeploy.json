@@ -123,6 +123,13 @@
       "metadata": {
         "description": "Network security group name"
       }
+    },
+	"dscUrl": {
+      "type": "string",
+      "defaultValue": "iLbAvSet",
+      "metadata": {
+        "description": "URL to the DSC module ZIP"
+      }
     }
   },
   "variables": {
@@ -404,7 +411,41 @@
             "storageUri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net')]"
           }
         }
-      }
+      },
+	  "resources": [
+			{
+				"name": "Microsoft.Powershell.DSC",
+				"type": "extensions",
+				"location": "[resourceGroup().location]",
+				"apiVersion": "2015-06-15",
+				"dependsOn": [
+					"[resourceId('Microsoft.Compute/virtualMachines', parameters('WinVmName'))]"
+				],
+				"tags": {
+					"displayName": "DSC"
+				},
+				"properties": {
+					"publisher": "Microsoft.Powershell",
+					"type": "DSC",
+					"typeHandlerVersion": "2.9",
+					"autoUpgradeMinorVersion": true,
+					"forceUpdateTag": "[parameters('DSCUpdateTagVersion')]",
+					"settings": {
+						"configuration": {
+							"url": "[parameters('dscUrl')]",
+							"script": "webServerMultiSiteDSC.ps1",
+							"function": "Main"
+						},
+						"configurationArguments": {
+							"nodeName": "[concat(parameters('vmNamePrefix'), copyindex())]"
+						}
+					},
+					"protectedSettings": {
+						"configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
+					}
+				}
+			}
+		]
     },
 	{
 		"type": "Microsoft.Network/networkSecurityGroups",
