@@ -419,7 +419,7 @@
 				"location": "[resourceGroup().location]",
 				"apiVersion": "2015-06-15",
 				"dependsOn": [
-					"[resourceId('Microsoft.Compute/virtualMachines', parameters('WinVmName'))]"
+					"[concat('Microsoft.Compute/virtualMachines', parameters('vmNamePrefix'), copyindex())]"
 				],
 				"tags": {
 					"displayName": "DSC"
