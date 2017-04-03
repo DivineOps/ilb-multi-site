@@ -131,7 +131,7 @@
         "description": "URL to the DSC module ZIP"
       }
     },
-	"hackathonDSCUpdateTagVersion": {
+	"DSCUpdateTagVersion": {
 		"type": "string",
 		"defaultValue": "1.0",
 		"metadata": {
