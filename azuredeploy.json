@@ -447,9 +447,7 @@
 							"nodeName": "[concat(parameters('vmNamePrefix'), copyindex())]"
 						}
 					},
-					"protectedSettings": {
-						"configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
-					}
+					"protectedSettings": null
 				}
 			}
 		]
