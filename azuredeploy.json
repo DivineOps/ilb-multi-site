@@ -137,6 +137,10 @@
 		"metadata": {
 			"description": "This value must be changed from a previous deployment to ensure the extension will run"
 		}
+	},
+	"webSiteWebPackage": {
+		"type": "string",
+		"defaultValue": "https://github.com/DivineOps/ilb-multi-site/blob/master/website.zip?raw=true"
 	}
   },
   "variables": {
@@ -444,7 +448,8 @@
 							"function": "Main"
 						},
 						"configurationArguments": {
-							"nodeName": "[concat(parameters('vmNamePrefix'), copyindex())]"
+							"nodeName": "[concat(parameters('vmNamePrefix'), copyindex())]",
+							"webDeployPackage": "[parameters('webSiteWebPackage')]"
 						}
 					},
 					"protectedSettings": null
