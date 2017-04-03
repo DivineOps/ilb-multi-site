@@ -126,12 +126,12 @@
     },
 	"dscUrl": {
       "type": "string",
-      "defaultValue": "https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json%2FwebServerMultiSiteDSC.zip",
+      "defaultValue": "https://github.com/DivineOps/ilb-multi-site/blob/master/webServerMultiSiteDSC.zip?raw=true",
       "metadata": {
         "description": "URL to the DSC module ZIP"
       }
     },
-	"DSCUpdateTagVersion": {
+	"dscUpdateTagVersion": {
 		"type": "string",
 		"defaultValue": "1.0",
 		"metadata": {
@@ -436,7 +436,7 @@
 					"type": "DSC",
 					"typeHandlerVersion": "2.9",
 					"autoUpgradeMinorVersion": true,
-					"forceUpdateTag": "[parameters('DSCUpdateTagVersion')]",
+					"forceUpdateTag": "[parameters('dscUpdateTagVersion')]",
 					"settings": {
 						"configuration": {
 							"url": "[parameters('dscUrl')]",
