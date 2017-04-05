@@ -2,7 +2,7 @@
 
 This template allows you to create 2 Virtual Machines with 2 websites under a Load balancer, and uses PowerShell DSC to deploy 2 simple IIS  websites on ports 80 and 81.
 <br />
-This template deploys 2 web server VMs in an Availability Set using Managed Disk. The VMs are deployed into a new/existing Virtual Network and Subnet, and protected by a Network Security Group with an "allow" rule for TCP on port 80-81. The template also deploys 2 Public IP addresses attached to the Load Balancer, and configures the load balancing rules and probes for both sites. The template also deploys a Storage Account for VM diagnostics
+This template deploys 2 web server VMs in an Availability Set using Managed Disk. The VMs are deployed into a new/existing Virtual Network and Subnet, and protected by a Network Security Group with an "allow" rule for TCP on port 80-81. The template also deploys 2 Public IP addresses attached to the Load Balancer, and configures the load balancing rules and probes for both sites. The template also deploys a Storage Account for VM diagnostics.
 <br />
 
 ## PowerShell DSC Extension
