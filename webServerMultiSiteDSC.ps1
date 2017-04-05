@@ -2,6 +2,7 @@ Configuration IISConfiguration
 {
 param([string] $nodeName, [string] $webDeployPackage)
 
+# Import required modules
 Import-DscResource -ModuleName PSDesiredStateConfiguration
 Import-DscResource -Module xWebAdministration
 Import-DSCResource -ModuleName xNetworking
@@ -28,7 +29,8 @@ Node $nodeName
 			SetScript ={
 				[system.io.directory]::CreateDirectory("C:\WebApp")
 				$dest = "C:\WebApp\Site.zip" 
-				Remove-Item -path "C:\inetpub\wwwroot" -Force -Recurse -ErrorAction SilentlyContinue
+				Remove-Item -path "C:\inetpub\80" -Force -Recurse -ErrorAction SilentlyContinue
+				Remove-Item -path "C:\inetpub\81" -Force -Recurse -ErrorAction SilentlyContinue
 				Invoke-WebRequest $using:webDeployPackage -OutFile $dest
 				Add-Type -assembly "system.io.compression.filesystem"
 				[io.compression.zipfile]::ExtractToDirectory($dest, "C:\inetpub\80")
@@ -57,7 +59,17 @@ Node $nodeName
 			Type            = "Directory" 
 			DependsOn       = "[Script]DeployWebPackage" 
 		}   
-
+		
+		# Stop the default website
+        xWebsite DefaultSite 
+        {
+            Ensure          = 'Present'
+            Name            = 'Default Web Site'
+            State           = 'Stopped'
+            PhysicalPath    = 'C:\inetpub\wwwroot'
+            DependsOn       = '[WindowsFeature]IIS'
+        }
+		
 		# Create the new Website on port 80
         xWebsite Port80WebSite
         {
@@ -72,7 +84,7 @@ Node $nodeName
                     Port                  = 80
                 }
             )
-            DependsOn       = "[File]Port80"
+            DependsOn       = "[File]Port80", "[xWebsite]DefaultSite"
         }
 
 		# Create the new Website on port 81
@@ -90,7 +102,7 @@ Node $nodeName
                 }
             )
             DependsOn       = "[File]Port81"
-        }	
+        }
 
 		# Open Firewall rule for port 81
 		xFirewall Firewall
@@ -101,10 +113,11 @@ Node $nodeName
             Enabled               = 'True'
             Profile               = ('Domain', 'Private', 'Public')
             Direction             = 'InBound'
-            RemotePort            = ('80')
+            RemotePort            = ('Any')
             LocalPort             = ('80', '81')
             Protocol              = 'TCP'
             Description           = 'Firewall rule for websites on ports 80-81'
-        }		
+        }				
+	
   }
 }
