@@ -12,6 +12,7 @@ Publish-AzureVMDscConfiguration -ConfigurationPath .\webServerMultiSiteDSC.ps1 -
 ```
 This repository includes both the original DSC ps1 file, and the resulting zip that is being deployed by the template. 
 <hr />
+
 ### Deploy the Template
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
