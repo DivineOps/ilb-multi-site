@@ -445,7 +445,7 @@
 						"configuration": {
 							"url": "[parameters('dscUrl')]",
 							"script": "webServerMultiSiteDSC.ps1",
-							"function": "Main"
+							"function": "IISConfiguration"
 						},
 						"configurationArguments": {
 							"nodeName": "[concat(parameters('vmNamePrefix'), copyindex())]",
