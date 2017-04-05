@@ -12,4 +12,11 @@ This template allows you to create 2 Virtual Machines with multiple sites under 
 This template also deploys a Storage Account, Virtual Network, Public IP address, Availability Set and Network Interfaces.
 In this template, we use the resource loops capability to create the network interfaces and virtual machines
 <br />
-Based roughly on this quickstart template https://github.com/Azure/azure-quickstart-templates/edit/master/201-2-vms-loadbalancer-lbrules/ 
+Expanded on this quickstart template for an Azure Load Balancer and two web servers https://github.com/Azure/azure-quickstart-templates/edit/master/201-2-vms-loadbalancer-lbrules/ 
+
+## PowerShell DSC Extension
+The included DSC module requires installation of two additional modules from PS Gallery. Since the modules cannot be installed during the DSC run, we need to create a DSC zip including the modules on the development machine. To do so, we need to use the following PowerShell command:
+```
+Publish-AzureVMDscConfiguration -ConfigurationPath .\webServerMultiSiteDSC.ps1 -ConfigurationArchivePath webServerMultiSiteDSC.zip -Force
+```
+This repository includes both the original DSC ps1 file, and the resulting zip that is being deployed. 
