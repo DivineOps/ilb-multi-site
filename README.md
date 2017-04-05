@@ -1,15 +1,8 @@
-# Create 2 Virtual Machines with Multiple sites under a Load balancer and configures Load Balancing rules for the VMs
+# Create 2 Virtual Machines with multiple functional websites under a Load balancer
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="http://armviz.io/visualizebutton.png"/>
-</a>
-
-This template allows you to create 2 Virtual Machines with multiple sites under a Load balancer and configures a load balancing rule on Port 80-81. 
+This template allows you to create 2 Virtual Machines with 2 websites under a Load balancer, and uses PowerShell DSC to deploy 2 simple IIS  websites on ports 80 and 81.
 <br />
-This template also deploys a Storage Account, Virtual Network, 2 Public IP addresses, an Availability Set and 2 Network Interfaces.
+This template deploys 2 web server VMs in an Availability Set using Managed Disk. The VMs are deployed into a new/existing Virtual Network and Subnet and protected by Network Security Group with an "allow" rule for TCP on port 80-81. The template also deploys 2 Public IP addresses attached to the Load Balancer, and configures the load balancing rules and probes for both sites. The template also deploys a Storage Account for VM diagnostics
 <br />
 
 ## PowerShell DSC Extension
@@ -18,3 +11,10 @@ The included DSC module requires installation of two additional modules from PS 
 Publish-AzureVMDscConfiguration -ConfigurationPath .\webServerMultiSiteDSC.ps1 -ConfigurationArchivePath webServerMultiSiteDSC.zip -Force
 ```
 This repository includes both the original DSC ps1 file, and the resulting zip that is being deployed. 
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
+    <img src="http://armviz.io/visualizebutton.png"/>
+</a>
