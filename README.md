@@ -6,11 +6,11 @@ This template deploys 2 web server VMs in an Availability Set using Managed Disk
 <br />
 
 ## PowerShell DSC Extension
-The included DSC module requires installation of two additional modules from PS Gallery. Since the modules cannot be installed during the DSC run, we need to create a DSC zip including the modules on the development machine. To do so, we need to use the following PowerShell command:
+If you are making changes to the DSC configuration, please keep in mind that the included configuration requires installation of two additional modules from PS Gallery. Since the modules cannot be installed during the DSC run, you will need to create a DSC zip including the modules on the development machine. To do so, use the following PowerShell cmdlet:
 ```
 Publish-AzureVMDscConfiguration -ConfigurationPath .\webServerMultiSiteDSC.ps1 -ConfigurationArchivePath webServerMultiSiteDSC.zip -Force
 ```
-This repository includes both the original DSC ps1 file, and the resulting zip that is being deployed. 
+This repository includes both the original DSC ps1 file, and the resulting zip that is being deployed by the template. 
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FDivineOps%2Filb-multi-site%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
